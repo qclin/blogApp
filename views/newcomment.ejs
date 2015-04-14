@@ -1,0 +1,16 @@
+<!DOCTYPE html> 
+<head> 
+	<title> new </title>
+</head> 
+<body> 
+<h1> write a new entry </h1> 
+
+<form method = "POST" action = "/entries/<%= entry.id %>" >
+	<input type ="text" name = "title" placeholder ="title" required><br>
+	<textarea name="content" placeholder = "here we go " rows="10" cols="50" ></textarea><br>
+	<input type ="text" name ="giphy" placeholder = "giphy search" required><br>
+	<button> submit </button>
+</form> 
+<a href = "/"> home </a>
+</body>
+</html>

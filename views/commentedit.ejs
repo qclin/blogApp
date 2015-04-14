@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<body>
+	<!-- edit form -->
+	<h3>edit you comment here:</h3>
+	<form method ="POST" action= "/entries/<%= entryID %>/comments/<%=comment.id%>?_method=PUT"> 
+		<input type="text" name="user" value="<%= comment.user %>"><br>
+		<textarea name="note" rows="5" cols="50" ><%= comment.note %></textarea><br>
+		<button>update</button>
+	</form>
+</body>
+</html>
+
+
+
+
+

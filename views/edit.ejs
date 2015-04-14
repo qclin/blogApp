@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<body>
+	<!-- update form -->
+	<h3>Update <%= entry.name %> here:</h3>
+	<form method="POST" action="/entries/<%= entry.id %>?_method=PUT">
+		<input type="text" name="title" value="<%= entry.title %>"><br>
+		<textarea name="content" rows="10" cols="50" ><%= entry.content %></textarea><br>
+		<input type ="text" name ="giphy" placeholder="new giphy search"><br>
+		<button>update</button>
+	</form>
+</body>
+</html>

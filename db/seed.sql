@@ -1,0 +1,1 @@
+INSERT INTO entries (title, content, instagram, giphy) VALUES ("first one", "some content to go inside", "instagram search", "giphy search");

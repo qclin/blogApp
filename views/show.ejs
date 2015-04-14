@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<head>
+	<style>
+		h1{
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			color: #60AFFE;
+		}
+		p{ 
+			text-align: left; 
+			font-size: 18px;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			color: #0276FD;
+  			line-height: 1;
+  			letter-spacing: 0px;
+  			font-weight: lighter;
+		}
+		h3{
+			padding:0;
+			margin:0;
+		}
+		h4{
+			font-size: 18px;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			color: #60AFFE;
+			font-style: 
+		}
+		a{
+			font-family: 'Courier New';
+			text-align: right; 
+			font-size: 10px;
+			text-decoration: none;
+		}
+		div.entry{
+			margin:0;
+			display: inline-block;
+			padding: 0px 10px 10px 10px;
+		}
+
+		div.comment{
+			margin:0;
+			display: inline-block;
+			padding: 10px;
+		}
+		button{
+			font-family: 'Courier New';
+  			color: #3498db;
+  			font-size: 10px;
+  			padding: 5px;
+ 			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1><%= entry.title %></h1>
+	<!-- display information of individual entry -->
+	<div class="entry">
+	
+	<img src= "<%= entry.giphy %>"></br>
+	<p><%= entry.content %></p><br>
+	
+	</div>
+	<!-- link to go home -->
+	<a href="/entries">return to blog</a> </br>
+	<a href="/entries/<%= entry.id %>/edit">edit post here</a></br>
+
+
+	<!-- delete the post  -->
+	<form method="POST" action="/entries/<%= entry.id %>?_method=DELETE">
+		<button>DELETE entry</button>
+	</form>
+
+	<!-- list previous comments  -->
+	<% if (comments != undefined){ %>
+	<% Object.keys(comments).forEach(function(key){ %>
+	<div class="comment">
+	<h4> <%= comments[key].user %>  </h4>
+	<p> <%= comments[key].note %> </p>
+	<!-- restful route to edit comment page, require entry id && comment id  -->
+	<a href ="/entries/<%= entry.id %>/comments/<%= comments[key].id %>/edit"> edit comment </a>
+	 <!-- again deleting comments requires routing back to individual article page -->
+	<form method="POST" action="/entries/<%= entry.id %>/comments/<%= comments[key].id %>?_method=DELETE">
+		<button>delete comment</button>
+	</form>
+	</div>
+	<% }); %>
+	<% } %>
+
+
+	<p> join discussion </p>
+	<!-- adding a comments section  form for new comments -->
+	<form method = "POST" action="/entries/<%= entry.id %>/comments"> 
+		<input type= "text" name = "user" placeholder = "user entitlement" required><br>
+		<textarea name="note" placeholder = "say something" rows="5" cols="50" ></textarea><br>
+		<button>post comment</button>
+	</form>
+
+
+</body>
+</html>

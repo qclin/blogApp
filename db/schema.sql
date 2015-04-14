@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS entries; 
+CREATE TABLE entries (
+	id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	title TEXT,
+	content TEXT,
+	instagram TEXT,
+	giphy TEXT,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TRIGGER timestamp_update BEFORE UPDATE ON entries BEGIN UPDATE entries SET updated_at = CURRENT_TIMESTAMP where id = new.id; 
+END; 
